@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "poppins", sans-serif;
+}
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: url("/background6.jpg") no-repeat fixed;
+  background-position: center;
+  background-size: cover;
+}
+.form-box {
+  position: relative;
+  width: 500px;
+  height: 480px;
+  background: transparent;
+  border: 4px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h2 {
+  position: absolute;
+  font-size: 3em;
+  top: -18%;
+  left: 10%;
+  color: #fff;
+  text-align: center;
+  text-shadow: 8px -1px 0px #775f5f;
+}
+.inputbox {
+  position: relative;
+  margin: 30px 0;
+  width: 310px;
+  border-bottom: 2px solid #fff;
+}
+.inputbox2 {
+  position: relative;
+  margin: 30px 0;
+  width: 310px;
+  border-bottom: 2px solid #fff;
+}
+.inputbox label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 1em;
+  pointer-events: none;
+  transition: 0.5s;
+}
+.inputbox2 label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 1em;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+  top: -5px;
+}
+.inputbox input {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 0 2px 0 2px;
+  color: #fff;
+}
+.inputbox ion-icon {
+  position: absolute;
+  right: 8px;
+  color: #fff;
+  font-size: 1.2em;
+  top: 20px;
+}
+/* .inputbox button {
+  position: absolute;
+  right: 8px;
+  width: 60px;
+  color: rgb(0, 0, 0);
+  font-size: 1.2em;
+  top: 20px;
+  border-radius: 40px;
+  background: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+} */
+
+.inputbox2 input[type="number"],
+.inputbox2 select {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 0 5px;
+  color: rgb(255, 255, 255);
+}
+
+select option {
+  background-color: #000;
+  color: #fff;
+}
+
+.inputbox2 ion-icon {
+  position: absolute;
+  right: 8px;
+  color: #fff;
+  font-size: 1.2em;
+  top: 20px;
+}
+
+.button2 {
+  width: 100%;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1em;
+  background: rgb(248, 248, 248);
+  font-weight: 600;
+  border: 4px solid rgba(54, 53, 53, 0.5);
+  border-radius: 40px;
+  backdrop-filter: blur(18px);
+}
+
+.token {
+  font-size: 0.9em;
+  color: #fff;
+  text-align: center;
+  margin: 25px 0 10px;
+}
+.token p a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+}
+.token p a:hover {
+  text-decoration: underline;
+}
+#tokenContainer {
+  display: none;
+}
+.inputbox3 {
+  position: relative;
+  margin: 30px 0;
+  left: 10px;
+  width: 500px;
+  border-bottom: 2px solid #fff;
+}
+
+.inputbox3 label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 1em;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.inputbox3 input {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 0 5px 0 5px;
+  color: #fff;
+}
+
+.inputbox3 button {
+  position: absolute;
+  right: 8px;
+  width: 60px;
+  color: rgb(0, 0, 0);
+  font-size: 1.2em;
+  top: 20px;
+  border-radius: 40px;
+  background: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.inputbox2 input[type="text"] {
+  width: 50%;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 0 5px;
+  color: rgb(255, 255, 255);
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/index.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonwebtoken/8.5.1/jsonwebtoken.min.js"></script>
+  <title>Token Generator</title>
+</head>
+<body>
+    <section>
+        <div >
+            <br />
+            <br />
+            <br />
+            <div class="form-box">
+                <form id="tokenForm">
+                     <h2>Token Generator</h2>
+                     <br />
+                      <br />
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" id="email" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" id="password" required>
+                        <label for="password">Password</label>
+                    </div>
+                   <div class="inputbox2">
+                       <ion-icon name="hourglass-outline"></ion-icon>
+                        <input type="number" id="expiration" required>
+                        <label for="expiration">Expiration Time</label>
+                    </div>
+                   <div class="inputbox2">
+                       <ion-icon name="time-outline"></ion-icon>
+                        <select id="timeUnit">
+                          <option value="minutes">Minutes</option>
+                          <option value="hours">Hours</option>
+                          <option value="seconds">Seconds</option>
+                        </select>
+                     </div>
+                      <div class="inputbox">
+                       <ion-icon name="document-lock-outline"></ion-icon>
+                        <input type="text" id="secret" required>
+                        <label for="secret">Secret</label>
+                    </div>
+                    <button class="button2" type="submit">Generate Token</button>
+                </form>
+                
+                </div>
+                <br />
+            <br />
+                <div id="tokenContainer" class="inputbox3">
+                    <input type="text" id="token" readonly>
+                    <label for="token">Token</label>
+                    <button id="copyButton">Copy</button>
+                </div>
+        </div>
+    </section>
+     <script>
+    const tokenForm = document.getElementById('tokenForm');
+    const tokenContainer = document.getElementById('tokenContainer');
+    const tokenInput = document.getElementById('token');
+    const copyButton = document.getElementById('copyButton');
+
+    tokenForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const expiration = document.getElementById('expiration').value;
+      const timeUnit = document.getElementById('timeUnit').value;
+       const secret = document.getElementById('secret').value;
+      const expiresIn = calculateExpiresIn(expiration, timeUnit);
+    
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({secret, email, password, expiresIn })
+      });
+
+      if (response.ok) {
+        const { token } = await response.json();
+        tokenInput.value = token;
+        tokenInput.select();
+        tokenContainer.style.display = 'block';
+      } else {
+          showToast('Error found Try again');
+      }
+    });
+
+    copyButton.addEventListener('click', () => {
+      tokenInput.select();
+      document.execCommand('copy');
+      showToast('Token copied to clipboard');
+    });
+
+    function calculateExpiresIn(value, unit) {
+      switch (unit) {
+        case 'minutes':
+          return value * 60;
+        case 'hours':
+          return value * 60 * 60;
+        case 'seconds':
+          return value;
+        default:
+          return 0;
+      }
+    }
+
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.textContent = message;
+      toast.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1em;
+        font-weight: bold;
+        z-index: 9999;
+        transition: opacity 0.3s ease-in-out;
+      `;
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = 0;
+        setTimeout(() => {
+          toast.remove();
+        }, 300);
+      }, 2000);
+    }
+  </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
